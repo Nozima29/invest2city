@@ -5,8 +5,10 @@ export default class ProfileScreen extends Component {
     render(){
       return (
         <View style={styles.container}>
-          <Text>Profile container</Text>
+        <View style={styles.cont1}>
+          
         </View>
+      </View>
       );
     }
     
@@ -15,9 +17,19 @@ export default class ProfileScreen extends Component {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#000',
       alignItems: 'center',
       justifyContent: 'center',
     },
+    cont1:{
+      flex: 1,
+      backgroundColor: 'white',
+      alignItems: 'center',
+      height:'100%',
+      width:'100%',
+      borderBottomStartRadius:80,
+      borderBottomEndRadius:80,
+      justifyContent: 'center',
+    }
   });
   
