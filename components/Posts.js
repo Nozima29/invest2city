@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { TextInput, Modal, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { Button } from 'native-base';
 import { Icon } from 'react-native-elements';
+import PasswordInputText from 'react-native-hide-show-password-input';
 
 export default class Posts extends Component {
   state = {
@@ -39,7 +40,7 @@ export default class Posts extends Component {
           <Text style={styles.postdes_price}>Price</Text>
           <Button style={styles.buy_button} onPress={() => { this.togglemodal(true) }} rounded warning >
             <Text style={styles.submitButtonText}>Buy</Text>
-          </Button>
+          </Button> 
         </View>
 
         {/* Modal section */}
@@ -66,14 +67,15 @@ export default class Posts extends Component {
                   placeholderTextColor='#2296F3'
                   autoCapitalize='none'
                   onChangeText={this.handleEmail} />
-
-                <TextInput style={styles.input}
-                  underlineColorAndroid='transparent'
-                  placeholder='Password'
-                  placeholderTextColor='#2296F3'
-                  autoCapitalize='none'
-                  onChangeText={this.handlePassword} />
-
+                <View >
+                  <TextInput style={styles.input}
+                     underlineColorAndroid='transparent'
+                     placeholderTextColor='#2296F3'
+                     autoCapitalize=
+                     'none'placeholder='Password'
+                     secureTextEntry={true}
+                     onChangeText={this.handlePassword}/>
+                </View>
                 <TouchableOpacity
                   style={styles.submitButton}
                   onPress={
@@ -128,7 +130,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     fontSize: 17,
   },
- 
+
   modal: {
     flex: 1,
     backgroundColor: 'white',
@@ -174,7 +176,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignContent: 'center',
     justifyContent: 'center',
-marginTop:15
-  }
+    marginTop: 15
+  },
+
 });
 

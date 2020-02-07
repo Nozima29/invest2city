@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     color: '#3C3C3C',
   },
   post_image: {
-    // width: '40%',
+    
     flex: 1,
     alignContent: 'center',
     justifyContent: 'center',

@@ -97,16 +97,13 @@ const styles = StyleSheet.create({
 
   },
   posts: {
-    
+    flex:2,
     alignContent: 'center',
     flexShrink: 1,
     alignSelf: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-  
-
-
   },
   post: {
     width: 190,
