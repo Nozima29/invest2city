@@ -43,16 +43,7 @@ export default class Posts extends Component {
           <Button style={styles.buy_button} onPress={() => { this.togglemodal(true) }} rounded warning >
             <Text style={styles.submitButtonText}>Buy</Text>
           </Button>
-        </View>
-{/* 
-        <Router>
-          <Stack key="root">
-            <Scene key="login" component={Login} title="Login" />
-            <Scene key="register" component={Register} title="Register" />
-            <Scene key="home" component={Home} />
-          </Stack>
-        </Router> */}
-        
+        </View>        
         {/* Modal section */}
         <View style={styles.container}>
           <Modal animationType={'slide'} transparent={false}
@@ -92,11 +83,6 @@ export default class Posts extends Component {
                     () => this.login(this.state.email, this.state.password)
                   }>
                   <Text style={styles.submitButtonText}>Submit</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.submitButton}
-                  onPress={() => this.props.navigation.navigate('Register')}>
-                  <Text style={styles.submitButtonText}>Register</Text>
                 </TouchableOpacity>
               </View>
             </View>

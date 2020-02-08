@@ -12,15 +12,31 @@ import ProfileScreen from '../screens/ProfileScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import Posts from '../components/Posts';
 import Registration from '../components/Registration';  
+import Login from '../components/Login';
+import { Alert} from 'react-native';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 const PostsSnack = createStackNavigator({
+  
   Home: {
     screen: HomeScreen,
     navigationOptions: ({ navigation }) => {
       return {
         headerLeft: (<Icon name='md-menu' size={30} style={{ paddingLeft: 10 }} onPress={() => navigation.openDrawer()} />),
-       
+        headerRight:(<Icon name='md-person' size={30} style={{ paddingRight: 10 }} onPress={() => Alert.alert(
+          'Title',
+          'My Alert Msg',
+          [
+            {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+            {
+              text: 'Login',
+              onPress: () => navigation.navigate('Login'),
+              style: 'cancel',
+            },
+            {text: 'Register', onPress: () => navigation.navigate('Register')},
+          ],
+          {cancelable: false},
+        )} />)
       };
     }
   },  
@@ -28,6 +44,7 @@ const PostsSnack = createStackNavigator({
   Posts: {
     screen: Posts,
   },
+  Login:{screen:Login},
 
 
 })
