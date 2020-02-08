@@ -11,6 +11,7 @@ import SearchScreen from '../screens/SearchScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import Posts from '../components/Posts';
+import Registration from '../components/Registration';  
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 const PostsSnack = createStackNavigator({
@@ -18,13 +19,16 @@ const PostsSnack = createStackNavigator({
     screen: HomeScreen,
     navigationOptions: ({ navigation }) => {
       return {
-        headerLeft: (<Icon name='md-menu' size={30} style={{ paddingLeft: 10 }} onPress={() => navigation.openDrawer()} />)
+        headerLeft: (<Icon name='md-menu' size={30} style={{ paddingLeft: 10 }} onPress={() => navigation.openDrawer()} />),
+       
       };
     }
-  },
+  },  
+  Register: {screen: Registration},
   Posts: {
     screen: Posts,
-  }
+  },
+
 
 })
 
@@ -61,6 +65,9 @@ const FavoritesSnack = createStackNavigator({
     }
   }
 })
+
+
+
 
 const DashboardTabNavigator = createMaterialBottomTabNavigator({
   Home: {
@@ -107,6 +114,7 @@ const DashboardTabNavigator = createMaterialBottomTabNavigator({
     }
   }
 },
+
 
 
   {

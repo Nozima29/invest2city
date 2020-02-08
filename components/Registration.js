@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-export default class FavoritesScreen extends Component {
+export default class Registartion extends Component {
+
     render(){
+   
       return (
+        
         <View style={styles.container}>
           <Text>Registartion page</Text>
           

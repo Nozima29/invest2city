@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, FlatList } from 'react-native';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
-import { Icon } from 'react-native-elements'
+
 import { FontAwesome5 } from '@expo/vector-icons';
 export default class HomeScreen extends Component {
 
@@ -11,38 +11,70 @@ export default class HomeScreen extends Component {
       <View style={styles.container}>
         <View style={styles.cont1}>
           {/* post section */}
-          <View style={styles.posts} >
-            <ScrollView>
+        <ScrollView  showsVerticalScrollIndicator={false} style={{width:400}}> 
+            <View style={styles.posts}>
+              
             <View style={styles.post}>
-              <View style={styles.post_comment}>
-                <View style={styles.post_text}>
-                  <TouchableOpacity onPress={() => this.props.navigation.navigate('Posts')}>
-                    <Text style={styles.title}>React Native</Text>
-                    <Text style={styles.text_desc}>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.post_icon}>
-                  <TouchableOpacity onPress={() => this.props.navigation.navigate('Posts')}>
-                    <Icon
-                      name='share'
-                      type='font-awesome'
-                      color='#FEBC40'
-                    />
-                  </TouchableOpacity>
-                  <FontAwesome5 name='heart' size={22} color="#FEBC40" />
-                </View>
-              </View>
-              <View style={styles.post_image}>
+              
+              <View style={styles.image}>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Posts')}>
-                  <Image
-                    style={styles.image}
-                    source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
-                  />
+                <Image style={styles.image_post} source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
+                />
                 </TouchableOpacity>
               </View>
-            </View>     
-            </ScrollView>
-          </View>
+              
+              <View style={styles.text_cont}>
+                <Text style={styles.price}>26.5$</Text>
+                <Text style={styles.title}>Title for post</Text>
+                <Text style={styles.text}>Looking for UI app design? Learn more about our works here </Text>
+              </View>
+              <View style={styles.icon} >
+                <FontAwesome5  name='heart' size={30} color="#FEBC40" />
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Posts')}>
+                <FontAwesome5  name='share' size={30} color="#FEBC40" />
+                </TouchableOpacity>
+              </View>
+            </View>
+        
+            <View style={styles.post}>
+              <View style={styles.image}>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('Posts')}>
+                <Image style={styles.image_post} source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
+                />
+                </TouchableOpacity>
+              </View>
+              <View style={styles.text_cont}>
+                <Text style={styles.price}>26.5$</Text>
+                <Text style={styles.title}>Title for post</Text>
+                <Text style={styles.text}>Looking for UI app design? Learn more about our works here </Text>
+              </View>
+              <View style={styles.icon} >
+                <FontAwesome5 name='heart' size={30} color="#FEBC40" />
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Posts')}>
+                <FontAwesome5  name='share' size={30} color="#FEBC40" />
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={styles.post}>
+              <View style={styles.image}>
+                <Image style={styles.image_post} source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
+                />
+              </View>
+              <View style={styles.text_cont}>
+                <Text style={styles.price}>26.5$</Text>
+                <Text style={styles.title}>Title for post</Text>
+                <Text style={styles.text}>Looking for UI app design? Learn more about our works here </Text>
+              </View>
+              <View style={styles.icon} >
+                <FontAwesome5  name='heart' size={30} color="#FEBC40" />
+                <FontAwesome5  name='share' size={30} color="#FEBC40" />
+              </View>
+            </View> 
+            </View> 
+          </ScrollView>
+
+
+
         </View>
       </View>
     )
@@ -68,68 +100,64 @@ const styles = StyleSheet.create({
     borderBottomEndRadius: 80,
     overflow:'hidden'
   },
-  post: {
-    height: 100,
-    backgroundColor: 'white',
-    margin: 10,
-    borderRadius: 4,
+  posts: {
+    flex:2,
+    alignContent: 'center',
+    flexShrink: 1,
+    alignSelf: 'center',
     flexDirection: 'row',
+    flexWrap:'wrap',
+    flexGrow:2,
+  
+  },
+  post: {
+    width: 190,
+    height:350,
+    backgroundColor: 'white',
+    flexDirection: 'column',
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 6,
     shadowOpacity: 0.26,
     elevation: 8,
-
-  },
-  post_text: {
-    width: '100%',
-    paddingLeft: 5,
-    borderBottomColor: '#FEBC40',
-    borderBottomWidth: 2,
-    height: '75%'
-  },
-  post_reverse: {
-    flexDirection: 'row-reverse',
-    height: 100,
-    backgroundColor: '#DDE0E4',
-    borderWidth: 0,
-    marginVertical: 5,
-
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 10,
+    margin: 5
   },
   image: {
-    width: 120,
-    height: 100
+    width: '100%',
+    height: '50%',
+    padding: 5,
+
   },
-  title: {
-    fontSize: 20,
-    fontStyle: 'italic',
-    color: '#FEBC40',
+  image_post: {
+    width: '100%',
+    height: '100%'
+  },
+  text_cont: {
+    padding: 5
+  },
+  price: {
+    fontSize: 30,
     fontWeight: 'bold'
   },
-  text_desc: {
+  title: {
+    fontWeight: 'bold',
+    fontSize: 14,
+    marginVertical: 8
+  },
+  text: {
     fontSize: 12,
-    marginTop: 5,
-    textAlign: 'left',
-    color: '#3C3C3C',
+    color: '#A0A0A0',
   },
-  post_image: {
-    
-    flex: 1,
-    alignContent: 'center',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    paddingHorizontal: 10
-  },
-  post_comment: {
-    width: '65%',
-  },
-  post_icon: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-around'
-  },
+  icon: {
+    alignItems: 'center',
+    flexDirection:'row',
+    justifyContent: 'space-around',
+    flex: 2
 
-
+  }
 
 
 });

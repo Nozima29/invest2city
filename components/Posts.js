@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { TextInput, Modal, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { Button } from 'native-base';
 import { Icon } from 'react-native-elements';
-import PasswordInputText from 'react-native-hide-show-password-input';
+
 
 export default class Posts extends Component {
   state = {
@@ -22,7 +22,9 @@ export default class Posts extends Component {
   login = (email, pass) => {
     alert('email: ' + email + '\n' + 'password: ' + pass + '\n' + 'Submitted')
   }
+
   render() {
+
     return (
       //More...
       <View style={styles.container}>
@@ -40,9 +42,17 @@ export default class Posts extends Component {
           <Text style={styles.postdes_price}>Price</Text>
           <Button style={styles.buy_button} onPress={() => { this.togglemodal(true) }} rounded warning >
             <Text style={styles.submitButtonText}>Buy</Text>
-          </Button> 
+          </Button>
         </View>
-
+{/* 
+        <Router>
+          <Stack key="root">
+            <Scene key="login" component={Login} title="Login" />
+            <Scene key="register" component={Register} title="Register" />
+            <Scene key="home" component={Home} />
+          </Stack>
+        </Router> */}
+        
         {/* Modal section */}
         <View style={styles.container}>
           <Modal animationType={'slide'} transparent={false}
@@ -69,12 +79,12 @@ export default class Posts extends Component {
                   onChangeText={this.handleEmail} />
                 <View >
                   <TextInput style={styles.input}
-                     underlineColorAndroid='transparent'
-                     placeholderTextColor='#2296F3'
-                     autoCapitalize=
-                     'none'placeholder='Password'
-                     secureTextEntry={true}
-                     onChangeText={this.handlePassword}/>
+                    underlineColorAndroid='transparent'
+                    placeholderTextColor='#2296F3'
+                    autoCapitalize=
+                    'none' placeholder='Password'
+                    secureTextEntry={true}
+                    onChangeText={this.handlePassword} />
                 </View>
                 <TouchableOpacity
                   style={styles.submitButton}
@@ -82,6 +92,11 @@ export default class Posts extends Component {
                     () => this.login(this.state.email, this.state.password)
                   }>
                   <Text style={styles.submitButtonText}>Submit</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.submitButton}
+                  onPress={() => this.props.navigation.navigate('Register')}>
+                  <Text style={styles.submitButtonText}>Register</Text>
                 </TouchableOpacity>
               </View>
             </View>

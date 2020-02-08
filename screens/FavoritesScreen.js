@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Image, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, ScrollView,  } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 export default class FavoritesScreen extends Component {
 
   render() {
-    var { height, width } = Dimensions.get('window');
+ 
     return (
       <View style={styles.container}>
         <View style={styles.cont1}>
-         
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{width:'100%'}}> 
+
+            <ScrollView  showsVerticalScrollIndicator={false} style={{width:400}}> 
             <View style={styles.posts}>
+
             <View style={styles.post}>
               <View style={styles.image}>
                 <Image style={styles.image_post} source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
@@ -26,20 +27,7 @@ export default class FavoritesScreen extends Component {
                 <FontAwesome5 solid name='heart' size={30} color="#FEBC40" />
               </View>
             </View>
-            {/* <View style={styles.post}>
-              <View style={styles.image}>
-                <Image style={styles.image_post} source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
-                />
-              </View>
-              <View style={styles.text_cont}>
-                <Text style={styles.price}>26.5$</Text>
-                <Text style={styles.title}>Title for post</Text>
-                <Text style={styles.text}>Looking for UI app design? Learn more about our works here </Text>
-              </View>
-              <View style={styles.icon} >
-                <FontAwesome5 solid name='heart' size={30} color="#FEBC40" />
-              </View>
-            </View>
+        
             <View style={styles.post}>
               <View style={styles.image}>
                 <Image style={styles.image_post} source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
@@ -67,7 +55,7 @@ export default class FavoritesScreen extends Component {
               <View style={styles.icon} >
                 <FontAwesome5 solid name='heart' size={30} color="#FEBC40" />
               </View>
-            </View>  */}
+            </View> 
             </View> 
           </ScrollView>
          
@@ -94,6 +82,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderBottomStartRadius: 80,
     borderBottomEndRadius: 80,
+    overflow:'hidden'
 
   },
   posts: {
@@ -102,8 +91,9 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     alignSelf: 'center',
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexWrap:'wrap',
+    flexGrow:2,
+  
   },
   post: {
     width: 190,
