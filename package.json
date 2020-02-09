@@ -8,7 +8,8 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@react-native-community/masked-view": "^0.1.5",
+    "@react-native-community/masked-view": "^0.1.6",
+    "@react-navigation/native": "^5.0.0",
     "expo": "~36.0.0",
     "native-base": "^2.13.8",
     "react": "~16.9.0",
@@ -19,9 +20,9 @@
     "react-native-hide-show-password-input": "^1.1.0",
     "react-native-paper": "^3.4.1",
     "react-native-password-field": "^1.0.8",
-    "react-native-reanimated": "^1.4.0",
+    "react-native-reanimated": "^1.7.0",
     "react-native-router-flux": "^4.2.0",
-    "react-native-safe-area-context": "^0.6.0",
+    "react-native-safe-area-context": "^0.6.4",
     "react-native-screens": "^2.0.0-beta.2",
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.0.10",

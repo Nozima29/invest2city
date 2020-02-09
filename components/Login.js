@@ -16,7 +16,9 @@ export default class Login extends Component {
     }
     login = (email, pass) => {
         alert('email: ' + email + '\n' + 'password: ' + pass + '\n' + 'Submitted')
+        this.props.navigation.push('Bid')
     }
+
     render() {
 
         return (
@@ -45,6 +47,10 @@ export default class Login extends Component {
                             () => this.login(this.state.email, this.state.password)
                         }>
                         <Text style={styles.submitButtonText}>Login</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.submitButton}
+                        onPress={() =>this.props.navigation.push('Register')}>
+                        <Text style={styles.submitButtonText}>Register</Text>
                     </TouchableOpacity>
                    
                 </View>

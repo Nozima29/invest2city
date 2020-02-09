@@ -38,7 +38,7 @@ export default class HomeScreen extends Component {
         
             <View style={styles.post}>
               <View style={styles.image}>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('Posts')}>
+              <TouchableOpacity onPress={() =>navigation.navigate('Posts')}>
                 <Image style={styles.image_post} source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
                 />
                 </TouchableOpacity>

@@ -5,29 +5,12 @@ import { Icon } from 'react-native-elements';
 
 
 export default class Posts extends Component {
-  state = {
-    modalVisible: false,
-    email: ' ',
-    password: ' '
-  }
-  togglemodal(visible) {
-    this.setState({ modalVisible: visible });
-  }
-  handleEmail = (text) => {
-    this.setState({ email: text });
-  }
-  handlePassword = (text) => {
-    this.setState({ password: text });
-  }
-  login = (email, pass) => {
-    alert('email: ' + email + '\n' + 'password: ' + pass + '\n' + 'Submitted')
-  }
-
   render() {
 
     return (
       //More...
       <View style={styles.container}>
+      <View style={styles.cont1}>
         <View style={styles.image_container}>
           <Image
             style={styles.postdes_image}
@@ -40,54 +23,13 @@ export default class Posts extends Component {
           <Text style={styles.postdes_detail}>Address</Text>
           <Text style={styles.postdes_detail}>Size</Text>
           <Text style={styles.postdes_price}>Price</Text>
-          <Button style={styles.buy_button} onPress={() => { this.togglemodal(true) }} rounded warning >
-            <Text style={styles.submitButtonText}>Buy</Text>
-          </Button>
-        </View>        
-        {/* Modal section */}
-        <View style={styles.container}>
-          <Modal animationType={'slide'} transparent={false}
-            visible={this.state.modalVisible}
-            onRequestClose={() => { console.log('Modal has been closed.') }}>
-            <View style={styles.modal}>
-              <View style={styles.modal_icon}>
-                <TouchableOpacity onPress={() => { this.togglemodal(false) }} >
-                  <Icon raised
-                    name='arrow-left'
-                    type='font-awesome'
-                    color='#FEBC40'
-                    size={30}
-                  />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.modal_text_container}>
-                <Text style={styles.modal_text}>Login</Text>
-                <TextInput style={styles.input}
-                  underlineColorAndroid='transparent'
-                  placeholder='Email'
-                  placeholderTextColor='#2296F3'
-                  autoCapitalize='none'
-                  onChangeText={this.handleEmail} />
-                <View >
-                  <TextInput style={styles.input}
-                    underlineColorAndroid='transparent'
-                    placeholderTextColor='#2296F3'
-                    autoCapitalize=
-                    'none' placeholder='Password'
-                    secureTextEntry={true}
-                    onChangeText={this.handlePassword} />
-                </View>
-                <TouchableOpacity
+          <TouchableOpacity
                   style={styles.submitButton}
-                  onPress={
-                    () => this.login(this.state.email, this.state.password)
-                  }>
-                  <Text style={styles.submitButtonText}>Submit</Text>
+                  onPress={() =>this.props.navigation.push('Login')}>
+                  <Text style={styles.submitButtonText}>Buy</Text>
                 </TouchableOpacity>
-              </View>
-            </View>
-          </Modal>
-        </View>
+        </View>        
+      </View>
       </View>
     );
   }
@@ -96,10 +38,19 @@ export default class Posts extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
+  },
+  cont1:{
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    height:'100%',
+    width:'100%',
+    borderBottomStartRadius:80,
+    borderBottomEndRadius:80,
+    justifyContent: 'center',
   },
   postdes_image: {
     width: '100%',
@@ -132,34 +83,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
 
-  modal: {
-    flex: 1,
-    backgroundColor: 'white',
-    padding: 10,
-    flexDirection: 'column'
-  },
-  modal_text: {
-    textAlign: 'center',
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: '#FEBC40'
-  },
-  modal_icon: {
-    position: 'absolute',
-    padding: 10,
-  },
-  modal_text_container: {
-    marginTop: 100,
-  },
-  input: {
-    margin: 15,
-    height: 40,
-    borderColor: '#2296F3',
-    borderWidth: 1,
-    paddingHorizontal: 16,
-    borderRadius: 25,
-    fontSize: 16,
-  },
+  
   submitButton: {
     backgroundColor: '#FEBC40',
     padding: 10,

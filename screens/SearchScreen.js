@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Image, ScrollView, TouchableOpacity  } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { StyleSheet,  View,  Image, ScrollView, TouchableOpacity  } from 'react-native';
+
 
 export default class SearchScreen extends Component {
     render(){
@@ -38,9 +38,7 @@ export default class SearchScreen extends Component {
             
             </View> 
           </ScrollView>
-
-
-
+          
         </View>
       </View>
       );

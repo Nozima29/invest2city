@@ -11,10 +11,13 @@ import SearchScreen from '../screens/SearchScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import Posts from '../components/Posts';
+import Bid from '../components/Bid';
 import Registration from '../components/Registration';  
 import Login from '../components/Login';
 import { Alert} from 'react-native';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+// import { createStackNavigator } from '@react-navigation/stack';
+
 
 const PostsSnack = createStackNavigator({
   
@@ -41,11 +44,9 @@ const PostsSnack = createStackNavigator({
     }
   },  
   Register: {screen: Registration},
-  Posts: {
-    screen: Posts,
-  },
+  Posts: {screen: Posts, },
   Login:{screen:Login},
-
+  Bid:{screen:Bid},
 
 })
 
