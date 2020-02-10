@@ -20,6 +20,7 @@ export default class Login extends Component {
             this.state.password == this.value['const_password']){
                 
                 alert('Successfully Logged in!');
+                this.props.navigation.push('Bid')
             
         }else{
                 alert('Oops! Not matched');                

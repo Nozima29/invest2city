@@ -5,7 +5,7 @@ import moment from 'moment';
 
 export default class Bid extends Component {
     constructor(props) {
-        super(props);        
+        super(props);
         this.state = {
             totalDuration: 0,
         };
@@ -21,15 +21,15 @@ export default class Bid extends Component {
             .format('YYYY-MM-DD hh:mm:ss');
         var expirydate = '2020-08-23 04:00:45';//You can set your own date-time
 
-        var diffr = moment.duration(moment(expirydate).diff(moment(date)));        
+        var diffr = moment.duration(moment(expirydate).diff(moment(date)));
         var hours = parseInt(diffr.asHours());
         var minutes = parseInt(diffr.minutes());
         var seconds = parseInt(diffr.seconds());
-        var d = hours * 60 * 60 + minutes * 60 + seconds;        
+        var d = hours * 60 * 60 + minutes * 60 + seconds;
         that.setState({ totalDuration: d });
-        
+
     }
-    
+
     render() {
         return (
             <View style={styles.container}>
@@ -37,7 +37,7 @@ export default class Bid extends Component {
                     <View style={styles.image_container}>
                         <Image
                             style={styles.postdes_image}
-                            source={{uri:'../images/PicsArt_09-26-10.44.03.jpg'}}
+                            source={{ uri: '../images/PicsArt_09-26-10.44.03.jpg' }}
                         />
                     </View>
                     <Text style={styles.postdes_title}>React Native</Text>
@@ -66,7 +66,7 @@ export default class Bid extends Component {
                     </View>
                     <TouchableOpacity
                         style={styles.submitButton}
-                        onPress={() =>alert('Submitted succeesfully')}>
+                        onPress={() => alert('Submitted succeesfully')}>
                         <Text style={styles.submitButtonText}>Buy</Text>
                     </TouchableOpacity>
                 </View>
@@ -103,12 +103,12 @@ const styles = StyleSheet.create({
         height: 250,
     },
     postdes_container: {
-        flex:2,
+        flex: 2,
         flexDirection: 'row',
-        flexWrap:'wrap',
-        flexGrow:2,
-        justifyContent:'space-between',
-        paddingHorizontal:10,
+        flexWrap: 'wrap',
+        flexGrow: 2,
+        justifyContent: 'space-between',
+        paddingHorizontal: 10,
     },
     postdes_title: {
         fontSize: 25,
@@ -117,10 +117,28 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         padding: 5,
     },
-    text:{
-        paddingVertical:8,
-        fontSize:15
-    }
-  
+    text: {
+        paddingVertical: 8,
+        fontSize: 15
+    },
+
+    submitButton: {
+        backgroundColor: '#FEBC40',
+        margin: 30,
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center',
+        borderRadius: 25,
+        fontSize: 16,
+        height: 50,
+        width: '70%',
+
+    },
+    submitButtonText: {
+        color: 'white',
+        fontSize: 20,
+        textAlign: 'center'
+    },
+
 
 });

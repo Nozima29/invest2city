@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TextInput, Modal, StyleSheet, Text, View, Image, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+// import useGetParam from 'react-navigation-use-getparam';
 
 export default class Posts extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ export default class Posts extends Component {
   }
   
   render() {
+    
     if (this.state.isLoading) {
       return (
         <View style={styles.container}>
@@ -38,6 +40,7 @@ export default class Posts extends Component {
     }
     
     return (
+
      <ScrollView>     
       <View style={styles.container}>      
       <FlatList 
@@ -59,7 +62,9 @@ export default class Posts extends Component {
           <Text style={styles.postdes_price}>{item.init_price}</Text>
           <TouchableOpacity
                   style={styles.submitButton}
-                  onPress={() =>this.props.navigation.push('Login')}>
+                  onPress={() =>this.props.navigation.push('Login')}
+                  
+                  >
                   <Text style={styles.submitButtonText}>Buy</Text>
                 </TouchableOpacity>
           </View>
