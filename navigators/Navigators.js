@@ -3,6 +3,8 @@ import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
+import {TextInput, View} from 'react-native';
+
 
 import Icon from '@expo/vector-icons/Ionicons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -53,10 +55,24 @@ const PostsSnack = createStackNavigator({
 
 const SearchSnack = createStackNavigator({
   Search: {
+    
     screen: SearchScreen,
     navigationOptions: ({ navigation }) => {
       return {
-        headerLeft: (<Icon name='md-menu' size={30} style={{ paddingLeft: 10 }} onPress={() => navigation.openDrawer()} />)
+        headerTitle: null,
+        headerLeft: (<Icon name='md-menu' size={30} style={{ paddingLeft: 10 }} onPress={() => navigation.openDrawer()} />),
+        headerRight: (
+        <View style={{height:20, marginRight:260, flexDirection:'row'}}> 
+      
+        <FontAwesome5 name="search" marginRight={8} color="cdccce" size={15}/>         
+          {/* <TextInput style={{ width:320, borderBottomWidth:0.5}}> */}
+          
+          < TextInput placeholder="Search" style={{ fontSize: 20,paddingLeft:250 }} />
+            
+         
+        </View>
+        )
+
       };
     }
   }
