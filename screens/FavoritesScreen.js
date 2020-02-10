@@ -10,12 +10,12 @@ export default class FavoritesScreen extends Component {
       <View style={styles.container}>
         <View style={styles.cont1}>
 
-            <ScrollView  showsVerticalScrollIndicator={false} style={{width:400}}> 
+            <ScrollView  showsVerticalScrollIndicator={false} style={{width:400}} horizontal={true}> 
             <View style={styles.posts}>
 
             <View style={styles.post}>
               <View style={styles.image}>
-                <Image style={styles.image_post} source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
+                <Image style={styles.image_post} source={{uri:'../images/PicsArt_09-26-10.44.03.jpg'}}
                 />
               </View>
               <View style={styles.text_cont}>
@@ -30,7 +30,7 @@ export default class FavoritesScreen extends Component {
         
             <View style={styles.post}>
               <View style={styles.image}>
-                <Image style={styles.image_post} source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
+                <Image style={styles.image_post} source={{uri:'../images/PicsArt_09-26-10.44.03.jpg'}}
                 />
               </View>
               <View style={styles.text_cont}>
@@ -44,7 +44,7 @@ export default class FavoritesScreen extends Component {
             </View>
             <View style={styles.post}>
               <View style={styles.image}>
-                <Image style={styles.image_post} source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
+                <Image style={styles.image_post} source={{uri:'../images/PicsArt_09-26-10.44.03.jpg'}}
                 />
               </View>
               <View style={styles.text_cont}>
@@ -93,11 +93,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap:'wrap',
     flexGrow:2,
-  
+    
   },
   post: {
-    width: 190,
-    height:400,
+    width:'42%',
+    height:330,
+    marginLeft: '5%',
     backgroundColor: 'white',
     flexDirection: 'column',
     shadowColor: 'black',

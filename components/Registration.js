@@ -1,67 +1,63 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 export default class Registartion extends Component {
-  state = {
-    Firstname:' ',
-    Lastname:' ',
-    Phone:' ',
-    email: ' ',
-    password: ' '
+  
+  constructor(){
+    super();
+    this.state = {
+      email: '',
+      password: '',
+      data: []  
+    }   
+  } 
+  
+  login(){      
+    const dict = {
+      'email': this.state.email,
+      'password': this.state.password
+    }
+    this.setState({
+      data: this.state.data.push(dict)
+    })
+    console.log(this.state.data);    
+    return <Login data={this.state.data}/> 
   }
-
-  handleFirstname = (text) => {
-    this.setState({ Firstname: text });
-  }
-  handleLastname = (text) => {
-    this.setState({ Lastname: text });
-  }
-  handlePhone = (text) => {
-    this.setState({ Phone: text });
-  }
-  handleEmail = (text) => {
-    this.setState({ email: text });
-  }
-  handlePassword = (text) => {
-    this.setState({ password: text });
-  }
-  login = (Firstname, Lastname, Phone, email, pass) => {
-    alert('Firstname: ' + Firstname + '\n' + 'Lastname: ' + Lastname + '\n'+'Phone: ' + Phone + '\n'+'email: ' + email + '\n' + 'password: ' + pass + '\n' + 'Submitted')
-  }
+  
   render() {
 
     return (
 
       <View style={styles.container}>
         <View style={styles.cont1}>
-
           <Text style={styles.modal_text}>Register</Text>
           <TextInput style={styles.input}
             underlineColorAndroid='transparent'
             placeholder='Firstname'
             placeholderTextColor='#2296F3'
             autoCapitalize='none'
-            onChangeText={this.handleFirstname} />
+            onChange = {(text)=>this.setState({fname:text})}/>
 
           <TextInput style={styles.input}
             underlineColorAndroid='transparent'
             placeholder='Lastname'
             placeholderTextColor='#2296F3'
             autoCapitalize='none'
-            onChangeText={this.handleLastname} />
+            onChange = {(text)=>this.setState({sname:text})}/>
 
           <TextInput style={styles.input}
             underlineColorAndroid='transparent'
             placeholder='Phone'
             placeholderTextColor='#2296F3'
             autoCapitalize='none'
-            onChangeText={this.handlePhone} />
+            onChange = {(text)=>this.setState({phone:text})}/>
 
           <TextInput style={styles.input}
             underlineColorAndroid='transparent'
             placeholder='Email'
             placeholderTextColor='#2296F3'
             autoCapitalize='none'
-            onChangeText={this.handleEmail} />
+            onChangeText = {(text) => this.setState({email:text})}
+            value = {this.state.email}/>
           
             <TextInput style={styles.input}
               underlineColorAndroid='transparent'
@@ -69,7 +65,8 @@ export default class Registartion extends Component {
               autoCapitalize='none' 
               placeholder='Password'
               secureTextEntry={true}
-              onChangeText={this.handlePassword} />
+              onChangeText = {(text)=>this.setState({password:text})}
+              value = {this.state.password}/>
 
           <TouchableOpacity
             style={styles.submitButton}
@@ -130,6 +127,8 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 25,
     fontSize: 16,
+    width: '50%',
+    marginLeft: '25%'
   },
   submitButtonText: {
     color: 'white',

@@ -1,44 +1,82 @@
 import React, { Component } from 'react';
-import { TextInput, Modal, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import { Button } from 'native-base';
-import { Icon } from 'react-native-elements';
-
+import { TextInput, Modal, StyleSheet, Text, View, Image, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class Posts extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      datasource: []
+    };
+  }
 
+  componentDidMount() {
+    return fetch('https://my-json-server.typicode.com/Nozima29/json-server/posts')
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState(  
+          {
+            isLoading: false,
+            dataSource: responseJson,
+          },
+          function () { }
+        );
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+  
+  render() {
+    if (this.state.isLoading) {
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="black" animating />
+        </View>
+      );
+    }
+    
     return (
-      //More...
-      <View style={styles.container}>
-      <View style={styles.cont1}>
+     <ScrollView>     
+      <View style={styles.container}>      
+      <FlatList 
+          data={this.state.dataSource}
+          renderItem={({ item }) => (
+      <View style={styles.cont1}>  
         <View style={styles.image_container}>
           <Image
             style={styles.postdes_image}
-            source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
+            source={{ uri: item.post_img }}
           />
         </View>
+        
         <View style={styles.postdes_container}>
-          <Text style={styles.postdes_title}>React Native</Text>
-          <Text style={styles.postdes_text}>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</Text>
-          <Text style={styles.postdes_detail}>Address</Text>
-          <Text style={styles.postdes_detail}>Size</Text>
-          <Text style={styles.postdes_price}>Price</Text>
+          <Text style={styles.postdes_title}>{item.title}</Text>
+          <Text style={styles.postdes_text}>{item.description}</Text>
+          <Text style={styles.postdes_detail}>{item.address}</Text>
+          <Text style={styles.postdes_detail}>{item.bid_end_date}</Text>
+          <Text style={styles.postdes_price}>{item.init_price}</Text>
           <TouchableOpacity
                   style={styles.submitButton}
                   onPress={() =>this.props.navigation.push('Login')}>
                   <Text style={styles.submitButtonText}>Buy</Text>
                 </TouchableOpacity>
-        </View>        
+          </View>
+         
       </View>
+      )}
+    />        
       </View>
+      
+    </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#000',
+    flex: 1,    
     alignItems: 'center',
     justifyContent: 'center',
   },

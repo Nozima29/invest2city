@@ -1,80 +1,78 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, FlatList, ActivityIndicator } from 'react-native';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 
 import { FontAwesome5 } from '@expo/vector-icons';
 export default class HomeScreen extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      datasource: []
+    };
+  }
+
+  componentDidMount() {
+    return fetch('https://my-json-server.typicode.com/Nozima29/json-server/posts')
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState(
+          {
+            isLoading: false,
+            dataSource: responseJson,
+          },
+          function () { }
+        );
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   render() {
+    if (this.state.isLoading) {
+      return (
+        <View style={styles.activity}>
+          <ActivityIndicator size="large" color="black" animating />
+        </View>
+      );
+    }
 
     return (
       <View style={styles.container}>
-        <View style={styles.cont1}>
-          {/* post section */}
-        <ScrollView  showsVerticalScrollIndicator={false} style={{width:400}}> 
+        <View style={styles.cont1}>          
+          <ScrollView showsVerticalScrollIndicator={false} style={{ width: 400 }}>
             <View style={styles.posts}>
               
-            <View style={styles.post}>
-              
-              <View style={styles.image}>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Posts')}>
-                <Image style={styles.image_post} source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
-                />
-                </TouchableOpacity>
-              </View>
-              
-              <View style={styles.text_cont}>
-                <Text style={styles.price}>26.5$</Text>
-                <Text style={styles.title}>Title for post</Text>
-                <Text style={styles.text}>Looking for UI app design? Learn more about our works here </Text>
-              </View>
-              <View style={styles.icon} >
-                <FontAwesome5  name='heart' size={30} color="#FEBC40" />
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Posts')}>
-                <FontAwesome5  name='share' size={30} color="#FEBC40" />
-                </TouchableOpacity>
-              </View>
+              <FlatList numColumns={2}
+                data={this.state.dataSource}
+                renderItem={({ item }) => (
+                  
+                  <View style={styles.post}>
+                    <View style={styles.image}>
+                      <TouchableOpacity onPress={() => this.props.navigation.navigate('Posts')}>
+                        <Image style={styles.image_post} source={{ uri: item.post_img }}
+                        />
+                      </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.text_cont}>
+                      <Text style={styles.price}>{item.init_price}$</Text>
+                      <Text >{item.title}</Text>
+                    </View>
+                    <View style={styles.icon} >
+                      <FontAwesome5 name='heart' size={30} color="#FEBC40" />
+                      <TouchableOpacity onPress={() => this.props.navigation.navigate('Posts')}>
+                        <FontAwesome5 name='share' size={30} color="#FEBC40" />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+
+                )}
+              />
             </View>
-        
-            <View style={styles.post}>
-              <View style={styles.image}>
-              <TouchableOpacity onPress={() =>navigation.navigate('Posts')}>
-                <Image style={styles.image_post} source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
-                />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.text_cont}>
-                <Text style={styles.price}>26.5$</Text>
-                <Text style={styles.title}>Title for post</Text>
-                <Text style={styles.text}>Looking for UI app design? Learn more about our works here </Text>
-              </View>
-              <View style={styles.icon} >
-                <FontAwesome5 name='heart' size={30} color="#FEBC40" />
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Posts')}>
-                <FontAwesome5  name='share' size={30} color="#FEBC40" />
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={styles.post}>
-              <View style={styles.image}>
-                <Image style={styles.image_post} source={require('C:/Users/User/Documents/Projects/ReactNative/Invest2city/invest2city/screens/PicsArt_09-26-10.44.03.jpg')}
-                />
-              </View>
-              <View style={styles.text_cont}>
-                <Text style={styles.price}>26.5$</Text>
-                <Text style={styles.title}>Title for post</Text>
-                <Text style={styles.text}>Looking for UI app design? Learn more about our works here </Text>
-              </View>
-              <View style={styles.icon} >
-                <FontAwesome5  name='heart' size={30} color="#FEBC40" />
-                <FontAwesome5  name='share' size={30} color="#FEBC40" />
-              </View>
-            </View> 
-            </View> 
           </ScrollView>
-
-
-
         </View>
       </View>
     )
@@ -90,6 +88,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  avtivity:{
+    backgroundColor:'white'
   },
   cont1: {
     flex: 1,
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
   
   },
   post: {
-    width: 190,
+    width: '42%',
     height:350,
     backgroundColor: 'white',
     flexDirection: 'column',

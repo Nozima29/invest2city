@@ -2,22 +2,30 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
 export default class Login extends Component {
-    state = {
+    constructor(){
+        super();
+        this.state = {        
+            email: '',
+            password: ''
+        }
         
-        email: ' ',
-        password: ' '
+    }    
+    value = {
+        'const_email': 'example@gmail.com',
+        'const_password': 'test'
     }
- 
-    handleEmail = (text) => {
-        this.setState({ email: text });
+    
+    login(){
+        if(this.state.email == this.value['const_email'] &&
+            this.state.password == this.value['const_password']){
+                
+                alert('Successfully Logged in!');
+            
+        }else{
+                alert('Oops! Not matched');                
+        }        
     }
-    handlePassword = (text) => {
-        this.setState({ password: text });
-    }
-    login = (email, pass) => {
-        alert('email: ' + email + '\n' + 'password: ' + pass + '\n' + 'Submitted')
-        this.props.navigation.push('Bid')
-    }
+    
 
     render() {
 
@@ -31,21 +39,21 @@ export default class Login extends Component {
                         placeholder='Email'
                         placeholderTextColor='#2296F3'
                         autoCapitalize='none'
-                        onChangeText={this.handleEmail} />
+                        onChangeText={(text) => {this.setState({email:text})}} 
+                        value = {this.state.email}/>
                     <View >
                         <TextInput style={styles.input}
                             underlineColorAndroid='transparent'
                             placeholderTextColor='#2296F3'
-                            autoCapitalize=
-                            'none' placeholder='Password'
+                            autoCapitalize='none' 
+                            placeholder='Password'
                             secureTextEntry={true}
-                            onChangeText={this.handlePassword} />
+                            onChangeText={(text) => {this.setState({password:text})}} 
+                            value = {this.state.password}/>
                     </View>
                     <TouchableOpacity
                         style={styles.submitButton}
-                        onPress={
-                            () => this.login(this.state.email, this.state.password)
-                        }>
+                        onPress={() => this.login()  }>
                         <Text style={styles.submitButtonText}>Login</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.submitButton}

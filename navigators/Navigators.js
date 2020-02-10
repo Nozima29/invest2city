@@ -28,7 +28,7 @@ const PostsSnack = createStackNavigator({
         headerLeft: (<Icon name='md-menu' size={30} style={{ paddingLeft: 10 }} onPress={() => navigation.openDrawer()} />),
         headerRight:(<Icon name='md-person' size={30} style={{ paddingRight: 10 }} onPress={() => Alert.alert(
           'Title',
-          'My Alert Msg',
+          'Login Before Proceed',
           [
             {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
             {
