@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native';
 import CountDown from 'react-native-countdown-component';
 import moment from 'moment';
+import Posts from './Posts';
 
 export default class Bid extends Component {
     constructor(props) {
         super(props);
         this.state = {
             totalDuration: 0,
+            isLoading: true,
+            datasource: []
         };
     }
     bid = () => {
         alert('Submitted succeesfully')
         this.props.navigation.goBack()
     }
-    componentDidMount() {
+    componentWillMount(){
         var that = this;
         var date = moment()
             .utcOffset('+05:30')
@@ -27,50 +30,80 @@ export default class Bid extends Component {
         var seconds = parseInt(diffr.seconds());
         var d = hours * 60 * 60 + minutes * 60 + seconds;
         that.setState({ totalDuration: d });
-
+    }
+    componentDidMount() {        
+        return fetch('https://my-json-server.typicode.com/Nozima29/json-server/post')
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState(  
+          {
+            isLoading: false,
+            dataSource: responseJson,
+          },
+          function () { }
+        );
+      })
+      .catch(error => {
+        console.error(error);
+      });
+        
     }
 
     render() {
+        if (this.state.isLoading) {
+            return (
+              <View style={styles.container}>
+                <ActivityIndicator size="large" color="black" animating />
+              </View>
+            );
+          }
         return (
+        
+        <FlatList 
+          data={this.state.dataSource}
+          renderItem={({ item }) => (
+            
             <View style={styles.container}>
-                <View style={styles.cont1}>
+            
+                <View style={styles.cont1}>  
                     <View style={styles.image_container}>
-                        <Image
-                            style={styles.postdes_image}
-                            source={{ uri: '../images/PicsArt_09-26-10.44.03.jpg' }}
-                        />
+                    <Image
+                        style={styles.postdes_image}
+                        source={{ uri: item.post_img }}
+                    />
                     </View>
-                    <Text style={styles.postdes_title}>React Native</Text>
+                    
                     <View style={styles.postdes_container}>
-                        <Text style={styles.text}>Auksion otkazish vaqti:</Text>
-                        <Text style={styles.text}>21.02.2020 09:00 дан 18:00 гача</Text>
-                        <Text style={{ width: '50%', paddingVertical: 8, fontSize: 15 }}>Arizalar qabul qilish vaqti:</Text>
-                        <Text style={styles.text}>19.02.2020 13:00</Text>
-                        <Text style={{ width: '50%', paddingVertical: 8, fontSize: 15 }}>Eng Past Narx:</Text>
-                        <Text style={styles.text}>159 375 000.00 UZS</Text>
+                    <Text style={styles.postdes_title}>{item.title}</Text>
+                    <Text style={styles.postdes_text}>{item.description}</Text>
+                    <Text style={styles.postdes_detail}>{item.address}</Text>
+                    <Text style={styles.postdes_detail}>{item.bid_end_date}</Text>
+                    <Text style={styles.postdes_price}>{item.init_price}</Text>
+                    
                     </View>
+         
+        </View>
                     <View style={styles.counter}>
-                        <View >
+                        
                             <CountDown
-                                until={this.state.totalDuration}
-                                //duration of countdown in seconds
-                                timetoShow={('H', 'M', 'S')}
-                                //formate to show
-                                onFinish={() => alert('finished')}
-                                //on Finish call
-                                onPress={() => alert('hello')}
-                                //on Press call
+                                until={this.state.totalDuration}                                
+                                timetoShow={('H', 'M', 'S')}                                
+                                onFinish={() => alert('finished')}                                
+                                onPress={() => alert('hello')}                                
                                 size={20}
                             />
-                        </View>
+                        
                     </View>
                     <TouchableOpacity
                         style={styles.submitButton}
-                        onPress={() => alert('Submitted succeesfully')}>
+                        onPress={() => alert('Bid set succeesfully')}>
                         <Text style={styles.submitButtonText}>Buy</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            
+                )}
+    />        
+                
         );
     }
 
@@ -79,7 +112,6 @@ export default class Bid extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -130,15 +162,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 25,
         fontSize: 16,
-        height: 50,
+        height:50,
         width: '70%',
-
+        
     },
     submitButtonText: {
         color: 'white',
         fontSize: 20,
         textAlign: 'center'
     },
-
 
 });

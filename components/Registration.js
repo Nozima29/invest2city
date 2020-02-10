@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import Login from './Login';  
 export default class Registartion extends Component {
-  
+
   constructor(){
     super();
     this.state = {
@@ -20,7 +21,10 @@ export default class Registartion extends Component {
       data: this.state.data.push(dict)
     })
     console.log(this.state.data);    
+    alert("Registered Successfully");
+    
     return <Login data={this.state.data}/> 
+    
   }
   
   render() {
@@ -71,7 +75,7 @@ export default class Registartion extends Component {
           <TouchableOpacity
             style={styles.submitButton}
             onPress={
-              () => this.login(this.state.Firstname, this.state.Lastname,this.state.Phone,this.state.email, this.state.password)
+              () => this.login()
             }>
             <Text style={styles.submitButtonText}>Submit</Text>
           </TouchableOpacity>

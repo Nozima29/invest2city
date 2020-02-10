@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "navigations",
-    "slug": "navigations",
+    "name": "invest2city",
+    "slug": "invest2city",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -16,6 +16,10 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "package": "com.gmail.gmail",
+      "versionCode": 1
     },
     "updates": {
       "fallbackToCacheTimeout": 0

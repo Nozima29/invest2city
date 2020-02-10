@@ -1,48 +1,78 @@
 import React, { Component } from 'react';
-import { TextInput, Modal, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { TextInput, Modal, StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default class ProfileScreen extends Component {
-    render(){
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      datasource: []
+    };
+  }
+
+  componentDidMount() {
+    return fetch('https://my-json-server.typicode.com/Nozima29/json-server/users')
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState(  
+          {
+            isLoading: false,
+            dataSource: responseJson,
+          },
+          function () { }
+        );
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }  
+ 
+  render(){
+    if (this.state.isLoading) {
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="black" animating />
+        </View>
+      );
+    }
       return (
         <View style={styles.container}>
         <View style={styles.cont1}>
-          
-        <ScrollView>
+        <FlatList 
+          data={this.state.dataSource}
+          renderItem={({ item }) => (
+            <ScrollView>
+            
+            <View style={styles.image_container}>
+              <Image
+                style={styles.image}
+                source={require('../images/profile.png')} />
 
-        <View style={styles.image_container}>
-          <Image
-            style={styles.image}
-            source={require('../images/img1.jpg')} />
+            </View>
+            <View style={styles.postdes_container}>
+              <Text style={styles.title}>Conatct Information</Text>
+                        
 
-        </View>
-        <View style={styles.postdes_container}>
-          <Text style={styles.title}>Conatct Information</Text>
-                    
-
-          <Text style={styles.profile_detail}>First Name</Text>
-          <Text style={styles.item}></Text>
-
-
-          <Text style={styles.profile_detail}>Last Name</Text>
-          <Text style={styles.item}></Text>
-
-          <Text style={styles.profile_detail}>Email</Text>
-          <Text style={styles.item}></Text>
-
-          <Text style={styles.profile_detail}>Conatct Number</Text>
-          <Text style={styles.item}></Text>
-
-          <Text style={styles.profile_detail}>Address</Text>
-          <Text style={styles.item}></Text>
-
-        </View>
+              <Text style={styles.profile_detail}>First Name</Text>
+              <Text style={styles.item}>{item.fname}</Text>
 
 
+              <Text style={styles.profile_detail}>Last Name</Text>
+              <Text style={styles.item}>{item.sname}</Text>
+
+              <Text style={styles.profile_detail}>Email</Text>
+              <Text style={styles.item}>{item.email}</Text>
+
+              <Text style={styles.profile_detail}>Conatct Number</Text>
+              <Text style={styles.item}>{item.phone_num}</Text>             
+
+            </View>
 
       </ScrollView>
-
+      )}
+    />  
 
         </View>
       </View>
@@ -54,8 +84,7 @@ export default class ProfileScreen extends Component {
   const styles = StyleSheet.create({
     container:
     {
-      flex: 1,
-      backgroundColor: '#000',
+      flex: 1,      
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -72,8 +101,8 @@ export default class ProfileScreen extends Component {
     },
 
     image: {
-      width: '100%',
-      height: '100%'
+      width: '90%',
+      height: '90%'
     },
     image_container: {
       alignContent: 'flex-start',

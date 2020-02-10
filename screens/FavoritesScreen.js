@@ -1,67 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, Image, ScrollView,  } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
-
+import HomeScreen from './HomeScreen';
 export default class FavoritesScreen extends Component {
 
-  render() {
- 
-    return (
-      <View style={styles.container}>
-        <View style={styles.cont1}>
-
-            <ScrollView  showsVerticalScrollIndicator={false} style={{width:400}} horizontal={true}> 
-            <View style={styles.posts}>
-
-            <View style={styles.post}>
-              <View style={styles.image}>
-                <Image style={styles.image_post} source={{uri:'../images/PicsArt_09-26-10.44.03.jpg'}}
-                />
-              </View>
-              <View style={styles.text_cont}>
-                <Text style={styles.price}>26.5$</Text>
-                <Text style={styles.title}>Title for post</Text>
-                <Text style={styles.text}>Looking for UI app design? Learn more about our works here </Text>
-              </View>
-              <View style={styles.icon} >
-                <FontAwesome5 solid name='heart' size={30} color="#FEBC40" />
-              </View>
-            </View>
-        
-            <View style={styles.post}>
-              <View style={styles.image}>
-                <Image style={styles.image_post} source={{uri:'../images/PicsArt_09-26-10.44.03.jpg'}}
-                />
-              </View>
-              <View style={styles.text_cont}>
-                <Text style={styles.price}>26.5$</Text>
-                <Text style={styles.title}>Title for post</Text>
-                <Text style={styles.text}>Looking for UI app design? Learn more about our works here </Text>
-              </View>
-              <View style={styles.icon} >
-                <FontAwesome5 solid name='heart' size={30} color="#FEBC40" />
-              </View>
-            </View>
-            <View style={styles.post}>
-              <View style={styles.image}>
-                <Image style={styles.image_post} source={{uri:'../images/PicsArt_09-26-10.44.03.jpg'}}
-                />
-              </View>
-              <View style={styles.text_cont}>
-                <Text style={styles.price}>26.5$</Text>
-                <Text style={styles.title}>Title for post</Text>
-                <Text style={styles.text}>Looking for UI app design? Learn more about our works here </Text>
-              </View>
-              <View style={styles.icon} >
-                <FontAwesome5 solid name='heart' size={30} color="#FEBC40" />
-              </View>
-            </View> 
-            </View> 
-          </ScrollView>
-         
-        </View>
-      </View>
-
+  render() { 
+    return (         
+      <HomeScreen />
     );
   }
 
